@@ -67,6 +67,7 @@ pipeline {
                             terraform init -input=false
                             terraform plan -refresh=false -out=tfplan
                             terraform show -json tfplan > tfplan.json
+                            cat tfplan.json
 
                             DENY=$(opa eval --format raw \
                             --data ../app/opa/terraform.rego \
